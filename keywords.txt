@@ -1,0 +1,16 @@
+buttonObject		KEYWORD1
+
+begin		KEYWORD2
+sampleButton	KEYWORD2
+detectButton	KEYWORD2
+updateButton	KEYWORD2
+buttonPressed	KEYWORD2
+buttonReleased	KEYWORD2
+buttonDown	KEYWORD2
+buttonUp		KEYWORD2
+
+
+buttonHold	KEYWORD2
+buttonReset	KEYWORD2
+
+buttonMaster	KEYWORD2
