@@ -1,5 +1,5 @@
 buttonObject	KEYWORD1
-buttonLoop	KEYWORD1
+buttonLoop	KEYWORD2
 
 begin		KEYWORD2
 sampleButton	KEYWORD2
