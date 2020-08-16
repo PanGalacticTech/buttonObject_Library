@@ -31,30 +31,14 @@
 #include "buttonObject.h"
 
 
-buttonObject::buttonObject() {
 
+void buttonObject::begin() {    // Pass the number of the pin the button is attached to, and the "active" state (is the button pulled up, or pulled down? // specify default values in HEADER not .cpp!!!
 
-
-}
-
-
-
-
-
-
-
-void buttonObject::begin(int buttonInput, int activeState) {    // Pass the number of the pin the button is attached to, and the "active" state (is the button pulled up, or pulled down? // specify default values in HEADER not .cpp!!!
-
-  buttonPin = buttonInput;                                        // Sets global variable buttonPin to the passed pin number
-
-
-  if (activeState) {                                            // if 1 then button is active PULL HIGH, so input it left floating and should be pulled down externally with 1 - 10k resistor
+  if (onState) {                                            // if 1 then button is active PULL HIGH, so input it left floating and should be pulled down externally with 1 - 10k resistor
     pinMode(buttonPin, INPUT);
   } else {
-    pinMode(buttonPin, INPUT_PULLUP);                           // else if activeState is 0, then button is active PULL LOW, therefore input is pulled high. External pullup resistors can also be used.
+    pinMode(buttonPin, INPUT_PULLUP);                           // else if onState is 0, then button is active PULL LOW, therefore input is pulled high. External pullup resistors can also be used.
   }
-
-  onState = activeState;                                        // sets global varible onState to the passed active state (BUTTON_PULLUP) or (BUTTON_PULLDOWN)
 
 }
 
@@ -158,7 +142,7 @@ uint8_t buttonObject::buttonUp(uint8_t *buttonHistory) {                        
 //longPress - bool
 //shortPress - bool
 
-bool buttonObject::buttonHold(uint32_t holdTime) {                                  // Method that performs all the functions nessissary to return a bool buttonTap & buttonHold
+bool buttonObject::buttonLoop(uint32_t holdTime) {                                  // Method that performs all the functions nessissary to return a bool buttonTap & buttonHold
 
 
   buttonObject::updateButton( & buttonHistory);             // updates the history of the button by calling function detectButton and saving the result into the bitstream

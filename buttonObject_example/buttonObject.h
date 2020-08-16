@@ -46,24 +46,36 @@
 #define BUTTON_PULL_LOW 0
 
 
-#define buttonMaster buttonHold                 // Sets up Synonym for buttonHold : buttonMaster
+#define buttonMaster buttonLoop                 // Sets up Synonym for buttonHold : buttonMaster
+#define buttonHold   buttonLoop                 // Alternative Synonyms for
 
-class buttonObject
-{
+class buttonObject {
+    // Constants
+    // These varaibles are set in the .begin function:
+
+    int buttonPin;          // global variable to hold the number of the button pin
+
+    int onState;            // global variable to hold the active state of the button (pull HIGH or pull LOW)
+
+
   public:
 
     // Constructor
 
-    buttonObject();
+    buttonObject(int attachTo, int activeState):              // Alternative way of setting out constructor. Will allow the use of further constructors
+      buttonPin(attachTo),
+      onState(activeState)
+    {
+    }
 
 
 
     // Begin Method
 
-    void begin(int buttonInput, int activeState = 1);     // Pass the number of the pin the button is attached to, and the "active" state (is the button pulled up, or pulled down? // Specify default values in .h file, not .cpp
+    void begin();
 
 
-
+    // Basic Methods
 
     uint8_t sampleButton();      // Samples the button and returns true state of the button
 
@@ -86,7 +98,7 @@ class buttonObject
 
     uint8_t buttonUp(uint8_t *buttonHistory);            // Returns ture if button is not pressed (Constant Low detected)
 
-    bool buttonHold(uint32_t holdTime = 1000);           // - Aliased with buttonMaster Method // Variable passed is required millis value for a long press - Defaults to 1 second
+    bool buttonLoop(uint32_t holdTime = 1000);           // - Aliased with buttonMaster & buttonHold Method // Variable passed is required millis value for a long press - Defaults to 1 second
 
     void buttonReset();                                   // Method for resetting shortPress & longPress bools once software has performed the required action
 
@@ -137,12 +149,7 @@ class buttonObject
 
     bool buttonLockout;   // when true button functions are locked, to allow for correct operation after long presses
 
-    // Constants
-    // These varaibles are set in the .begin function:
 
-    int buttonPin = 4;          // global variable to hold the number of the button pin
-
-    int onState = 1;            // global variable to hold the active state of the button (pull HIGH or pull LOW)
 
 
 

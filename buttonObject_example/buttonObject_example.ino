@@ -51,12 +51,14 @@ ledObject led;
 
 // button Object
 
-#define buttonPin 4
-
-buttonObject button;
+#define BUTTON_PIN 4
 
 //#define BUTTON_PULL_HIGH 1    // These are defined in buttonObject.h file
 //#define BUTTON_PULL_LOW 0
+
+
+buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);    // Set up instance of buttonObject
+
 
 
 
@@ -68,7 +70,7 @@ void setup() {
 
   led.begin(13 , 1);
 
-  button.begin(buttonPin, BUTTON_PULL_HIGH);     // Pass button pin & state indicating a "pushed" button. (defaults to HIGH)
+  button.begin();     
 
 
 }
@@ -79,7 +81,7 @@ void loop() {
 
 
 
-  button.buttonMaster(750);   // long int passed controls the time required for a long press. (defaults to 1 second)
+  button.buttonLoop(750);   // long int passed controls the time required for a long press. (defaults to 1 second)
 
   // calling button master returns global variables:
 
