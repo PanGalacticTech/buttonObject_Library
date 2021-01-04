@@ -144,6 +144,7 @@ uint8_t buttonObject::buttonUp(uint8_t *buttonHistory) {                        
 
 bool buttonObject::buttonLoop(uint32_t holdTime) {                                  // Method that performs all the functions nessissary to return a bool buttonTap & buttonHold
 
+  bool buttonReturn = false;
 
   buttonObject::updateButton( & buttonHistory);             // updates the history of the button by calling function detectButton and saving the result into the bitstream
 
@@ -171,7 +172,7 @@ bool buttonObject::buttonLoop(uint32_t holdTime) {                              
         longPress = true;                                                     // longpress is true
         longPressCount++;
         buttonLockout = true;
-        return true;
+        buttonReturn = true;
       }
     }
 
@@ -179,8 +180,8 @@ bool buttonObject::buttonLoop(uint32_t holdTime) {                              
     if (buttonObject::buttonUp(& buttonHistory)) {
       buttonLockout = false;
     }
-  }
-  
+  } 
+   return buttonReturn;
 }
 
 
