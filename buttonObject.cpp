@@ -32,7 +32,7 @@
 
 
 
-void buttonObject::begin() {    // Pass the number of the pin the button is attached to, and the "active" state (is the button pulled up, or pulled down? // specify default values in HEADER not .cpp!!!
+void buttonObject::begin() {    //  Sets up buttonPin as input and sets up input pullup if constructor is passed BUTTON_PULL_DOWN 
 
   if (onState) {                                            // if 1 then button is active PULL HIGH, so input it left floating and should be pulled down externally with 1 - 10k resistor
     pinMode(buttonPin, INPUT);

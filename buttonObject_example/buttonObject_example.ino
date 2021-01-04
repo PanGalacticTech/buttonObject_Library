@@ -39,10 +39,11 @@
 
 #include "buttonObject.h"
 
-#include <ledObject.h>
+#include <ledObject.h>   // Only used for Example, not required for library function. Can be found
+                          //                      @ https://github.com/PanGalacticTech/ledObject_library
 
 
-ledObject led;
+ledObject led(13);
 
 
 
@@ -57,7 +58,7 @@ ledObject led;
 //#define BUTTON_PULL_LOW 0
 
 
-buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);    // Set up instance of buttonObject
+buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);    // Set up instance of buttonObject. Pass Button Pin & whether it pulls HIGH, or LOW when pressed.
 
 
 
@@ -68,7 +69,7 @@ void setup() {
   Serial.begin(115200);
 
 
-  led.begin(13 , 1);
+  led.begin();
 
   button.begin();     
 
