@@ -62,6 +62,8 @@ ________________________________________________________________________________
 
 ### Setup Functions:
 
+Setup function must be run once before .buttonLoop() method. <br>
+
 `button.begin();`<br> <br>
 
 .begin() Function sets up button input pin into input mode, and sets INPUT_PULLUP, if button is specified<br>
