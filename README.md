@@ -2,11 +2,11 @@
 #### Built and maintained by [Declan Heard](mailto:pangalactictech@gmail.com "Email me!") on behalf of [Pan Galactic Tech](https://PanGalacticTech.com)
 
 ## Features
-* Libaray to handle and debounce button inputs using OOP topology.
+* Libaray to handle and debounce button inputs using **OOP** topology.
 * Button is sampled periodically and history saved into a bitstream.
 * Bitmasks used to compare bitstream to a rising edge or falling edge over a number of samples.
 * This method is great at rejecting noise from dirty contacts or cheap buttons.
-* Button defined as a Pull Up or Pull Down button in constructor.
+* Button defined as a **Pull Up** or **Pull Down** button in constructor.
 * Method can differentiate between long press & short press.
 * Adjustable long press duration.
 * Returns total number of button presses.
@@ -52,9 +52,9 @@ Declaring a button object:
 
 `buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);` <br>
 
-If button is LOW pulled HIGH on press, use:  `BUTTON_PULL_HIGH` <br>
+If button is **LOW** pulled **HIGH** on press, use:  `BUTTON_PULL_HIGH` <br>
 
-Else If button is HIGH pulled LOW on press, use: `BUTTON_PULL_LOW` <br><br>
+Else If button is **HIGH** pulled **LOW** on press, use: `BUTTON_PULL_LOW` <br><br>
 
 <br>
 
@@ -62,12 +62,12 @@ ________________________________________________________________________________
 
 ### Setup Functions:
 
-Setup function must be run once before .buttonLoop() method. <br>
+Setup function must be run once before **.buttonLoop()** method. <br>
 
 `button.begin();`<br> <br>
 
-.begin() Function sets up button input pin into input mode, and sets INPUT_PULLUP, if button is specified<br>
-BUTTON_PULL_LOW
+**.begin()** Function sets up button input pin into input mode, and sets **INPUT_PULLUP**, if button is specified<br>
+**BUTTON_PULL_LOW**
 
 <br><br>
 
@@ -92,20 +92,21 @@ ________________________________________________________________________________
 ### Detecting Button Press:
 #### Short Press
 
-A short press is detected when the user releases the button in a time shorter than LONG_PRESS_TIME.
-
-`button.shortPress` <br>
-
+A short press is detected when the user releases the button in a time shorter than **LONG_PRESS_TIME**.<br>
 bool is set true on button release.<br>
+
+`button.shortPress` <br> <br>
+
 
 #### Long Press
 
-A long press is detected when the user keeps button depressed longer than LONG_PRESS_TIME
-
-`button.longPress`<br>
-
+A long press is detected when the user keeps button depressed longer than **LONG_PRESS_TIME**. <br>
 bool is set true while button is depressed and button will not trigger short press untill
-it is released and reset.
+it is released and reset. <br>
+
+`button.longPress`<br><br>
+
+
 
 ### Resetting the Triggers
 
@@ -116,12 +117,12 @@ behaviour.
 
 ### Example Loop Using Reset Behaviour
 
-`button.buttonLoop();   // long int passed controls the time required for a long press. (defaults to 1 second)`
+`button.buttonLoop();   // long int passed controls the time required for a long press. (defaults to 1 second)`<br><br>
 
-`  if (button.shortPress) {`
-`    led.toggleLED();`
-`    button.buttonReset();     // .buttonReset method resets longPress & shortPress variables once action has been taken`
-`  }`
+`  if (button.shortPress) {` <br>
+`    led.toggleLED();` <br>
+`    button.buttonReset();     // .buttonReset method resets longPress & shortPress variables once action has been taken`<br>
+`  }`<br><br>
 
 
 
