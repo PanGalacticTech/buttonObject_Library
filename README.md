@@ -15,8 +15,7 @@
 * Ultra fast and low overhead method.
 * Each buttonObject controls one input, add a new constructer for each button required.
 
-### Based On: Embed with Elliot: Ultimate Debounce method
-https://hackaday.com/2015/12/10/embed-with-elliot-debounce-your-noisy-buttons-part-ii/#more-180185
+### Based On: [Embed with Elliot: Ultimate Debounce method](https://hackaday.com/2015/12/10/embed-with-elliot-debounce-your-noisy-buttons-part-ii/#more-180185)
 ___________________________________________________________________________________________________________
 
 ## Getting Started
