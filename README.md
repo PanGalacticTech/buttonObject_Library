@@ -31,14 +31,16 @@ ________________________________________________________________________________
 
 ## Use
 
-### Precompiler Requirements
+### Precompiler Requirements<br>
 
 `#include <buttonObject.h>   // Libary include`  <br> <br>
 
-Button Pin Declaration
+Button Pin Declaration<br>
+
 `#define BUTTON_PIN 4                     // Select Button input pin`   <br>
 
-Long Press Time Declaration
+Long Press Time Declaration<br>
+
 `#define LONG_PRESS_TIME 750                // time in milliseconds` <br>
  <br>
 
