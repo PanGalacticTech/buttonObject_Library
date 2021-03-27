@@ -4,14 +4,14 @@
 ## Features
 * Libaray to handle and debounce button inputs using OOP topology.
 * Button is sampled periodically and history saved into a bitstream.
-* Bitmasks used to compare a rising edge with a falling edge over a number of samples.
+* Bitmasks used to compare bitstream to a rising edge or falling edge over a number of samples.
 * This method is great at rejecting noise from dirty contacts or cheap buttons.
 * Button defined as a Pull Up or Pull Down button in constructor.
-* Methods can differentiate between long press & short press.
+* Method can differentiate between long press & short press.
 * Adjustable long press duration.
 * Returns total number of button presses.
 * Returns total number of button releases.
-* Returns total number of button longPresses (In resting state: releaseCount + longPresseCount = pressCount).
+* Returns total number of button longPresses (In resting state: releaseCount + longPressCount = pressCount).
 * Ultra fast and low overhead method.
 * Each buttonObject controls one input, add a new constructer for each button required.
 
