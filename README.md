@@ -52,11 +52,9 @@ Declaring a button object:
 
 `buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);` <br>
 
-If button is LOW pulled HIGH on press, use: <br>
-`BUTTON_PULL_HIGH` <br>
+If button is LOW pulled HIGH on press, use:  `BUTTON_PULL_HIGH` <br><br>
 
-Else If button is HIGH pulled LOW on press, use: <br>
-`BUTTON_PULL_LOW` <br><br>
+Else If button is HIGH pulled LOW on press, use: `BUTTON_PULL_LOW` <br><br>
 
 <br>
 
