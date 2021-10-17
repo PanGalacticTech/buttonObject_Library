@@ -1,19 +1,21 @@
-# buttonObject_Library *(v1.0.0)*
+# tinyButton_Library *(v1.0.0)*
 #### Built and maintained by [Imogen Heard](mailto:pangalactictech@gmail.com "Email me!") on behalf of [Pan Galactic Tech](https://PanGalacticTech.com)
 
 ## Features
-* Libaray to handle and debounce button inputs using **OOP** topology.
+* Libaray based on buttonObject to handle and debounce button inputs using **OOP** topology.
+* Bulds on buttonObject methods by providing the ability to sample multiple buttons using Analog to Digital Converter.
+* Buttons should be wired with different voltage dividers to a single ADC capable pin. Voltage on this pin is sampled, the number of the button is calculated and passed into the normal buttonObject methods.
 * Button is sampled periodically and history saved into a bitstream.
 * Bitmasks used to compare bitstream to a rising edge or falling edge over a number of samples.
 * This method is great at rejecting noise from dirty contacts or cheap buttons.
-* Button defined as a **Pull Up** or **Pull Down** button in constructor.
+
 * Method can differentiate between long press & short press.
 * Adjustable long press duration.
 * Returns total number of button presses.
 * Returns total number of button releases.
 * Returns total number of button longPresses (In resting state: releaseCount + longPressCount = pressCount).
 * Ultra fast and low overhead method.
-* Each buttonObject controls one input, add a new constructer for each button required.
+* Each tinyButton instance controls multiple button inputs.
 
 ### Based On: [Embed with Elliot: Ultimate Debounce method](https://hackaday.com/2015/12/10/embed-with-elliot-debounce-your-noisy-buttons-part-ii/#more-180185)
 ___________________________________________________________________________________________________________
@@ -25,11 +27,14 @@ ________________________________________________________________________________
 3. Open Arduino IDE and select example program.
 
 ### Dependencies
+* buttonObject_library available from [here](https://github.com/PanGalacticTech/buttonObject_Library) - written by Imogen Heard
 No dependency for library function, however examples have the following dependencies:
-* ledObject_library available from [here](https://github.com/PanGalacticTech/ledObject_library) - written by PanGalacticTech
+* ledObject_library available from [here](https://github.com/PanGalacticTech/ledObject_library) - written by Imogen Heard
 ___________________________________________________________________________________________________________
 
 ## Use
+
+# Old Documentation Below, New Documentation in progress
 
 ### Precompiler Requirements<br>
 
