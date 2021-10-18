@@ -1,12 +1,20 @@
-/* ---------------------- Button Object Library ------------------
+/* ---------------------- tinyButton Library ------------------
 
     Library to simplify the implementation of buttons for inclusion with
     User Interfaces.
 
+    
+  Bulds on buttonObject methods by providing the ability to
+  sample multiple buttons using Analog to Digital Converter.
 
-   Declan Heard
+  Buttons should be wired with different voltage dividers
+  to a single ADC capable pin. Voltage on this pin is sampled,
+  the number of the button is calculated and passed into
+  the normal buttonObject methods.
+
+   Imogen Heard
    Pan Galactic Tech
-   09/08/2020
+   18/10/2021
 
    Released for public use
 
@@ -40,7 +48,7 @@
 #include "buttonObject.h"
 
 #include <ledObject.h>   // Only used for Example, not required for library function. Can be found
-                          //                      @ https://github.com/PanGalacticTech/ledObject_library
+//                      @ https://github.com/PanGalacticTech/ledObject_library
 
 
 ledObject led(13);
@@ -71,7 +79,7 @@ void setup() {
 
   led.begin();
 
-  button.begin();     
+  button.begin();
 
 
 }
