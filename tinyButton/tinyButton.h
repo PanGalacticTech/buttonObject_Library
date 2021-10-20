@@ -44,10 +44,17 @@
 #include <wProgram.h>
 #endif
 
+#include "buttonObject.h"
 
+#define BUTTON_PIN A7
 
 // Derived Class ------------// Base Class
-class tinyButton: public buttonObject {
+class tinyButton {
+
+
+  private:
+
+    buttonObject buttonA, buttonB, buttonC, buttonD;
 
   public:
 
@@ -55,26 +62,26 @@ class tinyButton: public buttonObject {
     // for brevity, 4 will be hardcoded
 
 
-// THIS IS THE WRONG WAY TO DO THIS!! LOOK AT HOW WE DID motorObject & Derived classes
-// As each instance needs to use methods independently, this derived class needs to
-//CONTAIN buttonObject, not be AN INSTANCE of it.
+    // THIS IS THE WRONG WAY TO DO THIS!! LOOK AT HOW WE DID motorObject & Derived classes
+    // As each instance needs to use methods independently, this derived class needs to
+    //CONTAIN buttonObject, not be AN INSTANCE of it.
 
     // Constructor
     tinyButton(int analog_buttonPin):   // Note syntax and structure here: Important for implementing Derived Classes
-      buttonA( buttonObject (buttonPin, buttonActiveState)),    // Not sure this is the correct way to make named instances but try it out                                              // BASE class is called without naming an instance, but passing any required values as arguments.
-      buttonB( buttonObject (buttonPin, buttonActiveState)),    // would be better as an array
-      buttonC( buttonObject (buttonPin, buttonActiveState)),
-      buttonD( buttonObject (buttonPin, buttonActiveState)),    // Others have calls to redundant pins, Dont know if this matters or not
-      buttonPin(analog_buttonPin)                               // Passes the
+      buttonA(analog_buttonPin, HIGH),
+      buttonB(analog_buttonPin, HIGH),
+      buttonC(analog_buttonPin, HIGH),
+      buttonD(analog_buttonPin, HIGH)
     {
+     buttonObject buttons[4] = {buttonA, buttonB, buttonC, buttonD};
     }
 
 
-// Global Variables
+    // Global Variables
 
-  uint8_t buttonPin;   // Assigned a value in the constructor
+    int buttonPin = A7;
 
-
+  //  buttonObject buttons[4];
 
 
     // Methods
@@ -82,13 +89,14 @@ class tinyButton: public buttonObject {
 
     uint8_t sampleADC();       // returns the true analog state of the ADC
 
-    uint8_t deriveButton();     // Derives which button has been pushed based on analog vaule
+    uint8_t deriveButton();     // Derives which button has been pushed based on analog vaule   // This replaces detectButton
 
-    void updateButtons();                             // Updates the history for the button that has been pushed
-
-
-  private:
+    void updateHistory(uint8_t *buttonsHistory[4]) ;                             // Updates the history for all buttons, replacing 0s with 1s in the bitstream for the number of th ebutton that has been pushed
 
 
+void buttonsLoop();
+
+
+};
 
 #endif

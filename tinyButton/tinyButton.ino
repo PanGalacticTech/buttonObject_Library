@@ -3,7 +3,7 @@
     Library to simplify the implementation of buttons for inclusion with
     User Interfaces.
 
-    
+
   Bulds on buttonObject methods by providing the ability to
   sample multiple buttons using Analog to Digital Converter.
 
@@ -51,7 +51,7 @@
 //                      @ https://github.com/PanGalacticTech/ledObject_library
 
 
-ledObject led(13);
+ledObject led[4] = {2, 4, 6, 8};
 
 
 
@@ -60,33 +60,29 @@ ledObject led(13);
 
 // button Object
 
-#define BUTTON_PIN 4
+
 
 //#define BUTTON_PULL_HIGH 1    // These are defined in buttonObject.h file
 //#define BUTTON_PULL_LOW 0
 
 
-#buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);    // Set up instance of buttonObject. Pass Button Pin & whether it pulls HIGH, or LOW when pressed.
-
-buttonObject buttons[4] = {buttonObject[BUTTON_PIN], buttonObject[BUTTON_PIN], buttonObject[BUTTON_PIN], buttonObject[BUTTON_PIN]};
 
 
-#define BUTTON_ADC_PIN  
+#define BUTTON_ADC_PIN A7
+
+
+#include "tinyButton.h"
 
 tinyButton buttons(BUTTON_ADC_PIN);
-
-
-
 
 
 void setup() {
 
   Serial.begin(115200);
 
+  startupLEDs();
 
-  led.begin();
-
-  buttons.begin();   // Would this always need to be accessed like an array?!
+ buttons.begin();
 
 
 }
@@ -95,29 +91,65 @@ void setup() {
 
 void loop() {
 
+ int analogValue = buttons.deriveButton();
+
+  Serial.println(analogValue);
 
 
-  button.buttonLoop(750);   // long int passed controls the time required for a long press. (defaults to 1 second)
+  /*
 
-  // calling button master returns global variables:
+    button.buttonLoop(750);   // long int passed controls the time required for a long press. (defaults to 1 second)
 
-  //pressCount
-  //longPressCount
-  //releaseCount
-  //longPress - bool
-  //shortPress - bool
+    // calling button master returns global variables:
 
-  if (button.shortPress) {
-    led.toggleLED();
-    button.buttonReset();     // .buttonReset method resets longPress & shortPress variables once action has been taken
+    //pressCount
+    //longPressCount
+    //releaseCount
+    //longPress - bool
+    //shortPress - bool
+
+    if (button.shortPress) {
+      led.toggleLED();
+      button.buttonReset();     // .buttonReset method resets longPress & shortPress variables once action has been taken
+    }
+
+    if (button.longPress) {
+      led.blinkEvent(10, 100, 200);
+      button.buttonReset();     // .buttonReset method resets longPress & shortPress variables once action has been taken
+    }
+
+
+    led.performBlink();    // Function from the LED library to perform blink events.
+
+  */
+
+
+}
+
+
+
+void startupLEDs() {
+
+
+
+  for (int i = 0; i < 4; i++) {
+
+    led[i].begin();
+    led[i].turnOff();
   }
 
-  if (button.longPress) {
-    led.blinkEvent(10, 100, 200);
-    button.buttonReset();     // .buttonReset method resets longPress & shortPress variables once action has been taken
+  for (int i = 0; i < 4; i++) {
+
+    led[i].begin();
+    led[i].turnOn();
+
+    delay(300);
   }
 
+  for (int i = 0; i < 4; i++) {
 
-  led.performBlink();    // Function from the LED library to perform blink events.
+    led[i].begin();
+    led[i].turnOff();
+  }
 
 }
