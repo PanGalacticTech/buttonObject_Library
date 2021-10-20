@@ -19,7 +19,7 @@
 
 
   // buttonObject::buttonMaster Function >
-  
+
   This method calls all methods required to return global variables:
 
   //pressCount
@@ -51,22 +51,28 @@ class tinyButton: public buttonObject {
 
   public:
 
-// Could use #ifdef NUMBER_BUTTONS 4 to give different constructors for different numbers of buttong
-// for brevity, 4 will be hardcoded
+    // Could use #ifdef NUMBER_BUTTONS 4 to give different constructors for different numbers of buttong
+    // for brevity, 4 will be hardcoded
 
+
+// THIS IS THE WRONG WAY TO DO THIS!! LOOK AT HOW WE DID motorObject & Derived classes
+// As each instance needs to use methods independently, this derived class needs to
+//CONTAIN buttonObject, not be AN INSTANCE of it.
 
     // Constructor
-    tinyButton(int pinA, int pinB, int pinC, int pinD):   // Note syntax and structure here: Important for implementing Derived Classes
-      buttonA( buttonObject (pinA, buttonActiveState)),    // Not sure this is the correct way to make named instances but try it out                                              // BASE class is called without naming an instance, but passing any required values as arguments.
-      buttonB( buttonObject (pinB, buttonActiveState)),
-      buttonC( buttonObject (pinC, buttonActiveState)),
-      buttonD( buttonObject (pinD, buttonActiveState)),
-      int buttonPins 
+    tinyButton(int analog_buttonPin):   // Note syntax and structure here: Important for implementing Derived Classes
+      buttonA( buttonObject (buttonPin, buttonActiveState)),    // Not sure this is the correct way to make named instances but try it out                                              // BASE class is called without naming an instance, but passing any required values as arguments.
+      buttonB( buttonObject (buttonPin, buttonActiveState)),    // would be better as an array
+      buttonC( buttonObject (buttonPin, buttonActiveState)),
+      buttonD( buttonObject (buttonPin, buttonActiveState)),    // Others have calls to redundant pins, Dont know if this matters or not
+      buttonPin(analog_buttonPin)                               // Passes the
     {
     }
 
 
+// Global Variables
 
+  uint8_t buttonPin;   // Assigned a value in the constructor
 
 
 
@@ -74,14 +80,14 @@ class tinyButton: public buttonObject {
     // Methods
     void begin();
 
-    uint8_t sampleADC();       // returns the true analog state of the ADC  
+    uint8_t sampleADC();       // returns the true analog state of the ADC
 
-    uint8_t deriveButton(uint16_t analogValue);     // Derives which button has been pushed based on analog vaule
+    uint8_t deriveButton();     // Derives which button has been pushed based on analog vaule
 
     void updateButtons();                             // Updates the history for the button that has been pushed
 
 
-
+  private:
 
 
 

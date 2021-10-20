@@ -42,7 +42,45 @@
 
  uint8_t tinyButton::sampleADC(){       // returns the true analog state of the ADC 
 
+ buttonSample = analogRead(buttonPin);
 
-
+ return buttonSample
 
  }
+
+// define boundaries between analog reads
+
+#define NULL_BOUNDARY 100
+//#define BOUNDARY_0 0
+#define BOUNDARY_1 256
+#define BOUNDARY_2 512
+#define BOUNDARY_3 768
+#define BOUNDARY_4 1024
+
+
+
+ uint8_t tinyButton::deriveButton(){    // Returns integers 1 - 4 depending on button pressed 0 = NULL or no button pressed
+
+  buttonSample = sampleADC();
+
+  if (buttonSample <= NULL_BOUNDARY){
+    return 0;
+  } else if (buttonSample > NULL_BOUNDARY && buttonSample <= BOUNDARY_1){
+    return 1;
+  } else if (buttonSample > BOUNDARY_1 && buttonSample <= BOUNDARY_2){
+    return 2;
+  } else if (buttonSample > BOUNDARY_2 && buttonSample <= BOUNDARY_3){
+    return 3;
+  } else if((buttonSample > BOUNDARY_3){
+    return 4;
+  } else {
+    return false;
+  }
+ }
+
+void buttonsHistory(){
+
+  
+}
+
+ 

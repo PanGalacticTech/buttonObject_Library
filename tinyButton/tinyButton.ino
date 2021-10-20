@@ -66,7 +66,14 @@ ledObject led(13);
 //#define BUTTON_PULL_LOW 0
 
 
-buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);    // Set up instance of buttonObject. Pass Button Pin & whether it pulls HIGH, or LOW when pressed.
+#buttonObject button(BUTTON_PIN, BUTTON_PULL_HIGH);    // Set up instance of buttonObject. Pass Button Pin & whether it pulls HIGH, or LOW when pressed.
+
+buttonObject buttons[4] = {buttonObject[BUTTON_PIN], buttonObject[BUTTON_PIN], buttonObject[BUTTON_PIN], buttonObject[BUTTON_PIN]};
+
+
+#define BUTTON_ADC_PIN  
+
+tinyButton buttons(BUTTON_ADC_PIN);
 
 
 
@@ -79,7 +86,7 @@ void setup() {
 
   led.begin();
 
-  button.begin();
+  buttons.begin();   // Would this always need to be accessed like an array?!
 
 
 }
