@@ -42,8 +42,6 @@
 #include <wProgram.h>
 #endif
 
-#include "buttonObject.h"
-
 #define BUTTON_PULL_HIGH 1
 #define BUTTON_PULL_LOW 0
 
@@ -64,7 +62,7 @@ class buttonObject {
 
     // Constructor
 
-    buttonObject(int attachTo, int activeState = HIGH):              // Alternative way of setting out constructor. Will allow the use of further constructors
+    buttonObject(int attachTo, int activeState):              // Alternative way of setting out constructor. Will allow the use of further constructors
       buttonPin(attachTo),
       onState(activeState)
     {
