@@ -101,6 +101,8 @@ class buttonObject {
     bool buttonLoop(uint32_t holdTime = 1000);           // - Aliased with buttonMaster & buttonHold Method // Variable passed is required millis value for a long press - Defaults to 1 second
 
     void buttonReset();                                   // Method for resetting shortPress & longPress bools once software has performed the required action
+	
+	void buttonStats();                                   // Method to print button stats
 
 
     // buttonMaster Method

@@ -192,3 +192,13 @@ longPress = false;
 
   
 }
+
+
+void buttonObject::buttonStats(){
+	Serial.print("pressCount: ");
+	Serial.print(pressCount);  
+	Serial.print(", releaseCount: " );
+	Serial.print(releaseCount);
+	Serial.print(", longPressCount: " );
+	Serial.println(longPressCount);     
+}
