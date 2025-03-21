@@ -133,6 +133,8 @@ class buttonObject {
     //N.B. release count + longPressCount = pressCount
 
     // Bool functions for directly interfacing with other functions
+	
+	bool buttonPress;
 
     bool shortPress;                           // variable to return true when button is short tapped (turns true on release) (latching, must be reset)
 

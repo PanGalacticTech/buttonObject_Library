@@ -160,6 +160,7 @@ bool buttonObject::buttonLoop(uint32_t holdTime) {                              
 
     if ( buttonObject::buttonPressed( & buttonHistory)) {   //if button has been pressed (rising edge) //   ( & buttonHistory) could also be written by declairing the variable uint8_t buttonHistory externally to the library. code might be neater.
       pressTime = millis();                                    // start timer
+	  buttonPress = true;
       pressCount++;                                             // increment pressCount
     }
 
@@ -186,7 +187,8 @@ bool buttonObject::buttonLoop(uint32_t holdTime) {                              
 
 
 void buttonObject::buttonReset(){    // Resets latching variables after their function has been fulfilled.
-  
+
+buttonPress = false;  
 shortPress = false;
 longPress = false;
 
