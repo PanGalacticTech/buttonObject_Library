@@ -83,20 +83,6 @@ class buttonObject {
 
 
 
-    // Ultra Debounce Button Methods:
-    //Based on:
-    //https://hackaday.com/2015/12/10/embed-with-elliot-debounce-your-noisy-buttons-part-ii/#more-180185
-
-
-    void updateButton(uint8_t *buttonHistory);      // Updates buttonHistory bitstream
-
-    uint8_t buttonPressed(uint8_t *buttonHistory);    // Returns true if button has been pressed (Rising Edge Detected)
-
-    uint8_t buttonReleased(uint8_t *buttonHistory);    // Returns true if button has been released (Falling Edge Detected)
-
-    uint8_t buttonDown(uint8_t *buttonHistory);        // Returns true if the button is held down (Constant High detected)
-
-    uint8_t buttonUp(uint8_t *buttonHistory);            // Returns ture if button is not pressed (Constant Low detected)
 
     bool buttonLoop(uint32_t holdTime = 1000);           // - Aliased with buttonMaster & buttonHold Method // Variable passed is required millis value for a long press - Defaults to 1 second
 
@@ -140,10 +126,26 @@ class buttonObject {
 
     bool longPress;                            // variable returns true on long press (returns true on hold)       (latching, must be reset)
 
-
+	bool buttonIsDown;                       // variable returns true if button is down
 
 
   private:
+  
+  
+    // Ultra Debounce Button Methods:
+    //Based on:
+    //https://hackaday.com/2015/12/10/embed-with-elliot-debounce-your-noisy-buttons-part-ii/#more-180185
+
+
+    void updateButton(uint8_t *buttonHistory);      // Updates buttonHistory bitstream
+
+    uint8_t buttonPressed(uint8_t *buttonHistory);    // Returns true if button has been pressed (Rising Edge Detected)
+
+    uint8_t buttonReleased(uint8_t *buttonHistory);    // Returns true if button has been released (Falling Edge Detected)
+
+    uint8_t buttonDown(uint8_t *buttonHistory);        // Returns true if the button is held down (Constant High detected)
+
+    uint8_t buttonUp(uint8_t *buttonHistory);            // Returns ture if button is not pressed (Constant Low detected)
 
     //Variables
 

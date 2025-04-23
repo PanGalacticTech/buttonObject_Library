@@ -5,7 +5,6 @@
 
 
    Imogen Wren
-   Pan Galactic Tech
    09/08/2020
 
    Released for public use
@@ -32,7 +31,7 @@
 
 
 
-void buttonObject::begin() {    // Pass the number of the pin the button is attached to, and the "active" state (is the button pulled up, or pulled down? // specify default values in HEADER not .cpp!!!
+void buttonObject::begin() {    //  Sets up buttonPin as input and sets up input pullup if constructor is passed BUTTON_PULL_DOWN 
 
   if (onState) {                                            // if 1 then button is active PULL HIGH, so input it left floating and should be pulled down externally with 1 - 10k resistor
     pinMode(buttonPin, INPUT);
@@ -68,8 +67,10 @@ uint8_t buttonObject::detectButton() {                           // Function ret
   uint8_t detectedState = sampleButton();
 
   if (detectedState == onState) {
+	  buttonIsDown = true;
     return 1;
   } else {
+	  buttonIsDown = false;
     return 0;
   }
 }
@@ -144,6 +145,7 @@ uint8_t buttonObject::buttonUp(uint8_t *buttonHistory) {                        
 
 bool buttonObject::buttonLoop(uint32_t holdTime) {                                  // Method that performs all the functions nessissary to return a bool buttonTap & buttonHold
 
+  bool buttonReturn = false;
 
   buttonObject::updateButton( & buttonHistory);             // updates the history of the button by calling function detectButton and saving the result into the bitstream
 
@@ -160,6 +162,7 @@ bool buttonObject::buttonLoop(uint32_t holdTime) {                              
 
     if ( buttonObject::buttonPressed( & buttonHistory)) {   //if button has been pressed (rising edge) //   ( & buttonHistory) could also be written by declairing the variable uint8_t buttonHistory externally to the library. code might be neater.
       pressTime = millis();                                    // start timer
+	  buttonPress = true;
       pressCount++;                                             // increment pressCount
     }
 
@@ -171,7 +174,7 @@ bool buttonObject::buttonLoop(uint32_t holdTime) {                              
         longPress = true;                                                     // longpress is true
         longPressCount++;
         buttonLockout = true;
-        return true;
+        buttonReturn = true;
       }
     }
 
@@ -179,16 +182,27 @@ bool buttonObject::buttonLoop(uint32_t holdTime) {                              
     if (buttonObject::buttonUp(& buttonHistory)) {
       buttonLockout = false;
     }
-  }
-  
+  } 
+   return buttonReturn;
 }
 
 
 
 void buttonObject::buttonReset(){    // Resets latching variables after their function has been fulfilled.
-  
+
+buttonPress = false;  
 shortPress = false;
 longPress = false;
 
   
+}
+
+
+void buttonObject::buttonStats(){
+	Serial.print("pressCount: ");
+	Serial.print(pressCount);  
+	Serial.print(", releaseCount: " );
+	Serial.print(releaseCount);
+	Serial.print(", longPressCount: " );
+	Serial.println(longPressCount);     
 }

@@ -67,8 +67,10 @@ uint8_t buttonObject::detectButton() {                           // Function ret
   uint8_t detectedState = sampleButton();
 
   if (detectedState == onState) {
+	  buttonIsDown = true;
     return 1;
   } else {
+	  buttonIsDown = false;
     return 0;
   }
 }
